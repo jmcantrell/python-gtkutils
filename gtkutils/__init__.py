@@ -1,5 +1,5 @@
 import os.path, urllib
-import gtk, gtk.glade, gobject
+import gtk, gobject
 
 from . import treeview
 
