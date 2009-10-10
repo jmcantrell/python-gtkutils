@@ -5,7 +5,7 @@ from glob import glob
 
 setup(
         name='GTKUtils',
-        version='0.1.3',
+        version='0.1.4',
         description='Various small utilities for working with PyGTK.',
         author='Jeremy Cantrell',
         author_email='jmcantrell@gmail.com',
