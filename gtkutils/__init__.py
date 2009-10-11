@@ -1,4 +1,5 @@
-import os.path, urllib, gtk, gobject
+import os.path, gtk, gobject
+from urllib import urlretrieve
 from . import treeview
 
 # FUNCTIONS {{{1
@@ -12,8 +13,15 @@ def pixbuf_from_file(filename, size=None): #{{{2
     return gtk.gdk.pixbuf_new_from_file_at_size(filename, *size)
 
 def pixbuf_from_url(url, size=None): #{{{2
-    filename = urllib.urlretrieve(url)[0]
-    return pixbuf_from_file(filename, size)
+    return pixbuf_from_file(urlretrieve(url)[0], size)
+
+def pixbuf_from_file_scale(filename, size, scaler): #{{{2
+    pb = pixbuf_from_file(filename)
+    size = scaler(size, (pb.get_width(), pb.get_height()))
+    return pb.scale_simple(size[0], size[1], gtk.gdk.INTERP_BILINEAR)
+
+def pixbuf_from_url_scale(url, size, scaler): #{{{2
+    return pixbuf_from_file_scale(urlretrieve(url)[0], size, scaler)
 
 def get_icon_list(filename): #{{{2
     icon_list = []
@@ -106,17 +114,17 @@ class ProgressDialog(ModalDialog): #{{{2
 
 
 
-class DirectoryChooser(gtk.FileChooserDialog): #{{{2
+class DirectoryChooserDialog(gtk.FileChooserDialog): #{{{2
 
     def __init__(self, **kwargs):
-        super(DirectoryChooser, self).__init__(**kwargs)
+        super(DirectoryChooserDialog, self).__init__(**kwargs)
         self.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)
         if 'title' not in kwargs: self.set_title('Choose Directory')
         self.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
         self.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
 
     def run(self):
-        r = super(DirectoryChooser, self).run()
+        r = super(DirectoryChooserDialog, self).run()
         self.hide()
         if r != gtk.RESPONSE_OK: return
         return self.get_filename() or self.get_current_folder()
