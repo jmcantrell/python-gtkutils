@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
         name='GTKUtils',
         version='0.1.5',
-        description='Various small utilities for working with PyGTK.',
+        description='Various utilities for working with PyGTK.',
         author='Jeremy Cantrell',
         author_email='jmcantrell@gmail.com',
         classifiers=[

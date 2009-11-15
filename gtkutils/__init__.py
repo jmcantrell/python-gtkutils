@@ -1,6 +1,5 @@
-import os.path, gtk, gobject
+import gtk, gobject
 from urllib import urlretrieve
-from . import treeview
 
 # FUNCTIONS {{{1
 
@@ -47,7 +46,8 @@ class Dialog(gtk.Dialog): #{{{2
 
 class AboutDialog(gtk.AboutDialog): #{{{2
 
-    def __init__(self, name=None, authors=None, website=None, license=None, logo=None, **kwargs):
+    def __init__(self, name=None, authors=None, website=None,
+            license=None, logo=None, **kwargs):
         super(AboutDialog, self).__init__(**kwargs)
         if name: self.set_name(name)
         if authors: self.set_authors(authors)
