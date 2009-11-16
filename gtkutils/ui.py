@@ -1,8 +1,6 @@
 import gtk
 
-# CLASSES {{{1
-
-class UI(object): #{{{2
+class UI(object): #{{{1
 
     def __init__(self, ui):
         self.ui = gtk.Builder()
@@ -13,7 +11,7 @@ class UI(object): #{{{2
 
 
 
-class Dialog(UI): #{{{2
+class Dialog(UI): #{{{1
 
     def __init__(self, ui='dialogs', dialog='dialog'):
         super(Dialog, self).__init__(ui)
@@ -28,7 +26,7 @@ class Dialog(UI): #{{{2
 
 
 
-class ConfirmDialog(Dialog): #{{{2
+class ConfirmDialog(Dialog): #{{{1
 
     def __init__(self, prompt, **kwargs):
         super(ConfirmDialog, self).__init__(**kwargs)
@@ -37,7 +35,7 @@ class ConfirmDialog(Dialog): #{{{2
 
 
 
-class ProgressDialog(Dialog): #{{{2
+class ProgressDialog(Dialog): #{{{1
 
     def __init__(self, **kwargs):
         super(ProgressDialog, self).__init__(**kwargs)

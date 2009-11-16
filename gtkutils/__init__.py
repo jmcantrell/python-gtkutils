@@ -1,37 +1,34 @@
 import gtk, gobject
 from urllib import urlretrieve
 
-# FUNCTIONS {{{1
-
-def text_trim(value, length=50): #{{{2
+def text_trim(value, length=50): #{{{1
     if len(value) <= length: return value
     return value[:length-3] + '...'
 
-def pixbuf_from_file(filename, size=None): #{{{2
+def pixbuf_from_file(filename, size=None): #{{{1
     if not size: return gtk.gdk.pixbuf_new_from_file(filename)
     return gtk.gdk.pixbuf_new_from_file_at_size(filename, *size)
 
-def pixbuf_from_url(url, size=None): #{{{2
+def pixbuf_from_url(url, size=None): #{{{1
     return pixbuf_from_file(urlretrieve(url)[0], size)
 
-def pixbuf_from_file_scale(filename, size, scaler): #{{{2
+def pixbuf_from_file_scale(filename, size, scaler): #{{{1
     pb = pixbuf_from_file(filename)
     size = scaler(size, (pb.get_width(), pb.get_height()))
     return pb.scale_simple(size[0], size[1], gtk.gdk.INTERP_BILINEAR)
 
-def pixbuf_from_url_scale(url, size, scaler): #{{{2
+def pixbuf_from_url_scale(url, size, scaler): #{{{1
     return pixbuf_from_file_scale(urlretrieve(url)[0], size, scaler)
 
-def get_icon_list(filename): #{{{2
+def get_icon_list(filename): #{{{1
     icon_list = []
     for size in 16, 32, 48, 64, 128:
         icon_list.append(pixbuf_from_file(filename, (size, size)))
     return icon_list
 
+#}}}1
 
-# CLASSES {{{1
-
-class Dialog(gtk.Dialog): #{{{2
+class Dialog(gtk.Dialog): #{{{1
 
     def __init__(self, **kwargs):
         super(Dialog, self).__init__(**kwargs)
@@ -44,10 +41,9 @@ class Dialog(gtk.Dialog): #{{{2
 
 
 
-class AboutDialog(gtk.AboutDialog): #{{{2
+class AboutDialog(gtk.AboutDialog): #{{{1
 
-    def __init__(self, name=None, authors=None, website=None,
-            license=None, logo=None, **kwargs):
+    def __init__(self, name=None, authors=None, website=None, license=None, logo=None, **kwargs):
         super(AboutDialog, self).__init__(**kwargs)
         if name: self.set_name(name)
         if authors: self.set_authors(authors)
@@ -61,7 +57,7 @@ class AboutDialog(gtk.AboutDialog): #{{{2
 
 
 
-class ModalDialog(Dialog): #{{{2
+class ModalDialog(Dialog): #{{{1
 
     def __init__(self, **kwargs):
         kwargs['flags'] = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT
@@ -69,7 +65,7 @@ class ModalDialog(Dialog): #{{{2
 
 
 
-class ConfirmDialog(ModalDialog): #{{{2
+class ConfirmDialog(ModalDialog): #{{{1
 
     def __init__(self, prompt, **kwargs):
         super(ConfirmDialog, self).__init__(**kwargs)
@@ -79,7 +75,7 @@ class ConfirmDialog(ModalDialog): #{{{2
 
 
 
-class StandardDialog(ModalDialog): #{{{2
+class StandardDialog(ModalDialog): #{{{1
 
     def __init__(self, **kwargs):
         super(StandardDialog, self).__init__(**kwargs)
@@ -88,7 +84,7 @@ class StandardDialog(ModalDialog): #{{{2
 
 
 
-class ProgressDialog(ModalDialog): #{{{2
+class ProgressDialog(ModalDialog): #{{{1
 
     def __init__(self, label, **kwargs):
         super(ProgressDialog, self).__init__(**kwargs)
@@ -114,7 +110,7 @@ class ProgressDialog(ModalDialog): #{{{2
 
 
 
-class DirectoryChooserDialog(gtk.FileChooserDialog): #{{{2
+class DirectoryChooserDialog(gtk.FileChooserDialog): #{{{1
 
     def __init__(self, **kwargs):
         super(DirectoryChooserDialog, self).__init__(**kwargs)

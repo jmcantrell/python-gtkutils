@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
         name='GTKUtils',
-        version='0.1.5',
+        version='0.2.0',
         description='Various utilities for working with PyGTK.',
         author='Jeremy Cantrell',
         author_email='jmcantrell@gmail.com',
