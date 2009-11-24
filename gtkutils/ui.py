@@ -1,4 +1,4 @@
-import gtk
+import gtk, gobject
 
 class UI(object): #{{{1
 
