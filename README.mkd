@@ -1,9 +1,9 @@
 Installation
 ------------
 
-If you have setuptools installed, you can install GTKUtils with:
+You should install GTKUtils with pip:
 
-    easy_install GTKUtils
+    pip install GTKUtils
 
 Otherwise, you'll have to download the package and run:
 
